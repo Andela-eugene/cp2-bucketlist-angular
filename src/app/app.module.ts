@@ -8,6 +8,8 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { TilesComponent } from './tiles/tiles.component';
 import { LoginComponent } from './login/login.component';
 
+import { routing } from './app.routes'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
