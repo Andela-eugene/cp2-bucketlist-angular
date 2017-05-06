@@ -10,7 +10,8 @@ import { LoginComponent } from './login/login.component';
 
 import { routing } from './app.routes';
 import { SignupComponent } from './signup/signup.component';
-import { LoginService } from './services/login/login.service'
+import { LoginService } from './services/login/login.service';
+import { ErrorPagesComponent } from './shared/error-pages/error-pages.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginService } from './services/login/login.service'
     LandingpageComponent,
     TilesComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ErrorPagesComponent
   ],
   imports: [
     BrowserModule,
