@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService } from '../services/login/login.service';
-import { LoginInterface } from '../services/login/login.interface';
 
 
 @Component({
@@ -14,18 +13,12 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-  loginResponse: LoginInterface;
+  loginResponse: any;
   errorMessage: string;
 
   constructor(private _loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-  }
-  getAllBucketlist() {
-    this._loginService.getAllBucketlist()
-      .subscribe(
-        bucket_response => {}
-      );
   }
 
   signIn() {

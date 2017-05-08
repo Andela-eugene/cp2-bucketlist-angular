@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { LoginService } from '../services/login/login.service';
+import { BucketlistService } from '../services/bucketlist/bucketlist.service';
+import { Bucketlist } from '../interfaces/bucketlist.interface';
 
 @Component({
   selector: 'app-tiles',
@@ -8,13 +10,16 @@ import { LoginService } from '../services/login/login.service';
   styleUrls: ['./tiles.component.css']
 })
 export class TilesComponent implements OnInit {
-  allBucketlists: any;
+  allBucketlists: Bucketlist[];
   errorMessage: any;
 
-  constructor(private _loginService: LoginService) { }
+  constructor(private _bucketlistService: BucketlistService, private _router: Router) { }
 
   ngOnInit() {
-    this._loginService.getAllBucketlist().subscribe(
+    this.getAllBucketlist();
+  }
+  getAllBucketlist() {
+    this._bucketlistService.getAllBucketlist().subscribe(
       bucketlists => {this.allBucketlists = bucketlists;
           console.log(this.allBucketlists);
         },
@@ -22,4 +27,8 @@ export class TilesComponent implements OnInit {
     );
   }
 
+  redirectToItems(bucket_id) {
+    console.log(bucket_id);
+    this._router.navigate(['/bucketlist', bucket_id]);
+  }
 }

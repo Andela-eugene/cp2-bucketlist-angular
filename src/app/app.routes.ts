@@ -9,6 +9,7 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { SignupComponent } from './signup/signup.component';
 import { TilesComponent } from './tiles/tiles.component';
 import { ErrorPagesComponent } from './shared/error-pages/error-pages.component';
+import { ItemsComponent } from './items/items.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -16,7 +17,8 @@ const appRoutes: Routes = [
   {path: 'bucketlist', component: TilesComponent},
   {path: '404', component: ErrorPagesComponent},
   {path: '', component: LandingpageComponent},
-  {path: '**', redirectTo: '/404'}
+  {path: '**', redirectTo: '/404'},
+  { path: 'bucketlist/:bucketlist_id', component: ItemsComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes)

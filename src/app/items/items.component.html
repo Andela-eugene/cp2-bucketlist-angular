@@ -1,0 +1,105 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/bucketlist">Bucketlist</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i> User <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1"  *ngFor="let bucket of allBucketlists">
+      <div class="col-md-4 col-sm-6">
+        <div class="card-container">
+          <div class="card">
+            <div class="front">
+              <div class="cover">
+                <img src="https://www.clipartsgram.com/image/129556292-kyz84k3.jpg"/>
+              </div>
+              <div class="content">
+                <div class="main">
+                  <h3 class="name">{{bucket.bucketlist_name}}</h3>
+                  <p class="profession">{{bucket.date}}</p>
+                  <p class="text-center">The bucket list contains {{bucket.bucketlist_items.length}} activities</p>
+                </div>
+                <div class="footer">
+                  <button class="btn btn-primary">
+                    <i class="fa fa-mail-forward"></i> View details
+                  </button>
+                </div>
+              </div>
+              <div class="back">
+                <div class="header">
+                  <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                </div>
+                <div class="content">
+                  <div class="main">
+                    <h4 class="text-center">Job Description</h4>
+                    <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>
+
+                    <div class="stats-container">
+                      <div class="stats">
+                        <h4>235</h4>
+                        <p>
+                          Followers
+                        </p>
+                      </div>
+                      <div class="stats">
+                        <h4>114</h4>
+                        <p>
+                          Following
+                        </p>
+                      </div>
+                      <div class="stats">
+                        <h4>35</h4>
+                        <p>
+                          Projects
+                        </p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="footer">
+                  <div class="social-links text-center">
+                    <a href="http://deepak646.blogspot.in/" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+                    <a href="http://deepak646.blogspot.in/" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+                    <a href="http://deepak646.blogspot.in/" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
