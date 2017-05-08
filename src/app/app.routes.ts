@@ -17,8 +17,8 @@ const appRoutes: Routes = [
   {path: 'bucketlist', component: TilesComponent},
   {path: '404', component: ErrorPagesComponent},
   {path: '', component: LandingpageComponent},
-  {path: '**', redirectTo: '/404'},
-  { path: 'bucketlist/:bucketlist_id', component: ItemsComponent }
+  {path: 'bucketlist/:bucketlist_id', component: ItemsComponent },
+  {path: '**', redirectTo: '/404'}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes)

@@ -12,7 +12,7 @@ export class ItemsService {
 
   constructor(private _http: Http, private _router: Router) { }
 
-   getAllitems(bucket_id): Observable<Items[]> {
+   getAllItems(bucket_id): Observable<Items[]> {
     let head = new Headers();
     head.append('Access-Control-Allow-Origin', '*');
     head.append('TOKEN', localStorage.getItem('TOKEN') );
@@ -20,6 +20,7 @@ export class ItemsService {
     head.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
     return this._http.get(`${this.url}/api/v1/bucketlists/items/${bucket_id}`, { headers: head })
       .map((response: Response) => {
+      console.log(response.json());
       this.items_json = response.json();
       this.items_array = this.items_json.bucketlists;
       return <Items[]> this.items_array;

@@ -18,18 +18,15 @@ export class ItemsComponent implements OnInit {
   constructor(private _itemService: ItemsService, private _route: ActivatedRoute) { }
 
   ngOnInit() {
-      // this._route.params.subscribe( params => {
-      //     this.bucketlist_id = params['bucketlist_id'];
-      //     console.log(this.bucketlist_id);
-      //     this.getAllItems(this.bucketlist_id);
-      //   }
-      // );
-    // this.bucketlist_id = this._route.snapshot.params['bucketlist_id'];
-    // this.getAllItems(this.bucketlist_id);
+      this._route.params.subscribe( params => {
+          this.bucketlist_id = params['bucketlist_id'];
+          this.getAllItems(this.bucketlist_id);
+        }
+      );
   }
 
   getAllItems(bucketlist_id: any) {
-    this._itemService.getAllitems(bucketlist_id).subscribe(
+    this._itemService.getAllItems(bucketlist_id).subscribe(
       items => {this.allItems = items;
           console.log(items);
           console.log(this.allItems);

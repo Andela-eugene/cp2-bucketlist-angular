@@ -28,7 +28,6 @@ export class TilesComponent implements OnInit {
   }
 
   redirectToItems(bucket_id) {
-    console.log(bucket_id);
     this._router.navigate(['/bucketlist', bucket_id]);
   }
 }
