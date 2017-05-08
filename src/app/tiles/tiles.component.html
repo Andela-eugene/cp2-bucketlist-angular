@@ -46,10 +46,13 @@
                 <img src="https://www.clipartsgram.com/image/129556292-kyz84k3.jpg"/>
               </div>
               <div class="content">
-                <div class="main">
+                <div class="main text-center">
                   <h3 class="name">{{bucket.bucketlist_name}}</h3>
                   <p class="profession">{{bucket.date}}</p>
-                  <p class="text-center">The bucket list contains {{bucket.bucketlist_items.length}} activities</p>
+                  <p class="text-center">
+                    The bucket list contains {{bucket.bucketlist_items.length}} activities
+                  </p>
+                   <button class="btn btn-sm btn-info text-center">update bucketlist</button>
                 </div>
                 <div class="footer">
                   <button class="btn btn-primary" (click)="redirectToItems(bucket.bucketlist_id)" >

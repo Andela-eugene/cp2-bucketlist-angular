@@ -21,8 +21,7 @@ export class TilesComponent implements OnInit {
   getAllBucketlist() {
     this._bucketlistService.getAllBucketlist().subscribe(
       bucketlists => {this.allBucketlists = bucketlists;
-          console.log(this.allBucketlists);
-        },
+      },
       error => this.errorMessage = <any> error
     );
   }

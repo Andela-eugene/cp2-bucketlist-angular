@@ -20,9 +20,9 @@ export class ItemsService {
     head.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
     return this._http.get(`${this.url}/api/v1/bucketlists/items/${bucket_id}`, { headers: head })
       .map((response: Response) => {
-      console.log(response.json());
       this.items_json = response.json();
-      this.items_array = this.items_json.bucketlists;
+      this.items_array = this.items_json.bucketlist_item;
+      console.log(this.items_array);
       return <Items[]> this.items_array;
     })
       .catch(this.handleError);

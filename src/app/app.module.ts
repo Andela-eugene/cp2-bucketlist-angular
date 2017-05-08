@@ -15,6 +15,7 @@ import { ErrorPagesComponent } from './shared/error-pages/error-pages.component'
 import { BucketlistService } from './services/bucketlist/bucketlist.service';
 import { ItemsService } from './services/item/items.service';
 import { ItemsComponent } from './items/items.component';
+import { UpdateItemComponent } from './update-item/update-item.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ItemsComponent } from './items/items.component';
     LoginComponent,
     SignupComponent,
     ErrorPagesComponent,
-    ItemsComponent
+    ItemsComponent,
+    UpdateItemComponent
   ],
   imports: [
     BrowserModule,

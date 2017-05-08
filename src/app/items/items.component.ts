@@ -20,15 +20,14 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {
       this._route.params.subscribe( params => {
           this.bucketlist_id = params['bucketlist_id'];
-          this.getAllItems(this.bucketlist_id);
+          this.getItems(this.bucketlist_id);
         }
       );
   }
 
-  getAllItems(bucketlist_id: any) {
+  getItems(bucketlist_id: any) {
     this._itemService.getAllItems(bucketlist_id).subscribe(
       items => {this.allItems = items;
-          console.log(items);
           console.log(this.allItems);
         },
       error => this.errorMessage = <any> error
