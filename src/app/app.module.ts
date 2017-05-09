@@ -16,6 +16,7 @@ import { BucketlistService } from './services/bucketlist/bucketlist.service';
 import { ItemsService } from './services/item/items.service';
 import { ItemsComponent } from './items/items.component';
 import { UpdateItemComponent } from './update-item/update-item.component';
+import { UpdateBucketComponent } from './update-bucket/update-bucket.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UpdateItemComponent } from './update-item/update-item.component';
     SignupComponent,
     ErrorPagesComponent,
     ItemsComponent,
-    UpdateItemComponent
+    UpdateItemComponent,
+    UpdateBucketComponent
   ],
   imports: [
     BrowserModule,

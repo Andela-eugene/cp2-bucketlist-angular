@@ -7,18 +7,39 @@ import { Items } from '../../interfaces/item.interface';
 @Injectable()
 export class ItemsService {
   url = 'http://127.0.0.1:5000';
-  items_json
+  items_json;
   items_array;
 
-  constructor(private _http: Http, private _router: Router) { }
-
-   getAllItems(bucket_id): Observable<Items[]> {
+  getHeaders(): Headers {
     let head = new Headers();
     head.append('Access-Control-Allow-Origin', '*');
     head.append('TOKEN', localStorage.getItem('TOKEN') );
     head.append('Content-Type', 'application/json');
     head.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
+    return head;
+  }
+
+  constructor(private _http: Http, private _router: Router) { }
+
+   getAllItems(bucket_id): Observable<Items[]> {
+    // let head = new Headers();
+    // head.append('Access-Control-Allow-Origin', '*');
+    // head.append('TOKEN', localStorage.getItem('TOKEN') );
+    // head.append('Content-Type', 'application/json');
+    // head.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
+     let head = this.getHeaders();
     return this._http.get(`${this.url}/api/v1/bucketlists/items/${bucket_id}`, { headers: head })
+      .map((response: Response) => {
+      this.items_json = response.json();
+      this.items_array = this.items_json.bucketlist_item;
+      console.log(this.items_array);
+      return <Items[]> this.items_array;
+    })
+      .catch(this.handleError);
+  }
+  getItemByID(bucket_id, item_id): Observable<Items[]> {
+    let head = this.getHeaders();
+    return this._http.get(`${this.url}/api/v1/bucketlists/${bucket_id}/items/${item_id}`, { headers: head })
       .map((response: Response) => {
       this.items_json = response.json();
       this.items_array = this.items_json.bucketlist_item;

@@ -29,4 +29,7 @@ export class TilesComponent implements OnInit {
   redirectToItems(bucket_id) {
     this._router.navigate(['/bucketlist', bucket_id]);
   }
+  redirectToBucket(bucket_id) {
+    this._router.navigate(['/bucket_update', bucket_id]);
+  }
 }

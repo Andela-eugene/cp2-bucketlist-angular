@@ -15,15 +15,30 @@ export class BucketlistService {
   bucket_arry;
 
   constructor(private _http: Http, private _router: Router) { }
-
-  getAllBucketlist(): Observable<Bucketlist[]> {
+  getHeader(): Headers {
     let head = new Headers();
     head.append('Access-Control-Allow-Origin', '*');
     head.append('TOKEN', localStorage.getItem('TOKEN') );
     head.append('Content-Type', 'application/json');
     head.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
+    return head;
+  }
+
+  getAllBucketlist(): Observable<Bucketlist[]> {
+    let head = this.getHeader();
     return this._http.get(`${this.url}/api/v1/bucketlists/`, { headers: head })
       .map((response: Response) => {
+      this.bucket_json = response.json();
+      this.bucket_arry = this.bucket_json.bucketlists;
+      return <Bucketlist[]> this.bucket_arry;
+    })
+      .catch(this.handleError);
+  }
+
+  getBucketByID(bucket_id): Observable<Bucketlist[]> {
+    let head = this.getHeader();
+    return this._http.get(`${this.url}/api/v1/bucketlists/${bucket_id}`, { headers: head })
+    .map((response: Response) => {
       this.bucket_json = response.json();
       this.bucket_arry = this.bucket_json.bucketlists;
       return <Bucketlist[]> this.bucket_arry;

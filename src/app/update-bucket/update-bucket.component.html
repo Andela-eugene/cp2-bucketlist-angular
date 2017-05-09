@@ -43,7 +43,7 @@
           <div class="card">
             <div class="front">
               <div class="cover">
-                  <img src="../../img/coverpage/sky-diving.jpg"/>
+                  <img src="../../img/coverpage/main_image.jpg"/>
               </div><!-- end cover -->
               <div class="content">
                 <div class="main">
@@ -51,18 +51,12 @@
                   <form class="form-horizontal">
                     <fieldset>
                       <!-- Form Name -->
-                      <legend>Update bucketlist item {{item_name}} {{item_description}}</legend>
+                      <legend>Update bucketlist</legend>
 
                       <div class="form-group">
-                        <label class="col-md-4 control-label" for="Item Name">Item Name</label>
+                        <label class="col-md-4 control-label" for="Bucket_Name">Bucket Name</label>
                         <div class="col-md-4">
-                          <input id="Item Name" name="Item_Name" type="text" placeholder="Name" class="form-control input-md" required="" value={{item.item_name}}>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="Item Description">Item Name</label>
-                        <div class="col-md-4">
-                          <input id="Item Description" name="Item_Description" type="text" placeholder="Description" class="form-control input-md" required="" value="{{item.description}}">
+                          <input id="Bucket_Name" name="Bucket_Name" type="text" placeholder="Name" class="form-control input-md" required="" value="{{name}}">
                         </div>
                       </div>
                       <div class="form-group">
@@ -82,4 +76,3 @@
     </div>
   </div>
 </div>
-
