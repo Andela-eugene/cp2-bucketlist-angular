@@ -24,7 +24,7 @@ export class LoginService {
   url = 'http://127.0.0.1:5000';
 
   constructor(private _http: Http,
-              private _router: Router, private _jsonp: Jsonp) {}
+              private _router: Router) {}
 
   login(username: string, password: string): Observable<LoginInterface> {
     this.body = JSON.stringify({

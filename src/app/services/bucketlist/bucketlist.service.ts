@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Response, Headers, RequestOptions, Jsonp} from '@angular/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Bucketlist } from '../../interfaces/bucketlist.interface';
@@ -69,6 +69,13 @@ export class BucketlistService {
   deleteBucket(bucket_id): Observable<any> {
     let head = this.getHeader();
     return this._http.delete(`${this.url}/api/v1/bucketlists/${bucket_id}`, { headers: head })
+      .map((response: Response) => response.json())
+      .do(data => console.log(data))
+      .catch(this.handleError);
+  }
+  searchBucketlist(search_value): Observable<any> {
+    let head = this.getHeader();
+    return this._http.delete(`${this.url}/api/v1/search/${search_value}`, { headers: head })
       .map((response: Response) => response.json())
       .do(data => console.log(data))
       .catch(this.handleError);

@@ -18,6 +18,9 @@ import { ItemsComponent } from './items/items.component';
 import { CreateItemComponent } from './create-item/create-item.component';
 import { UpdateBucketComponent } from './update-bucket/update-bucket.component';
 import { CreateBucketlistComponent } from './create-bucketlist/create-bucketlist.component';
+import { RegisterService } from './services/register/register.service';
+import { SearchComponent } from './search/search.component';
+import { AuthenticateService } from './services/authenticate/authenticate.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { CreateBucketlistComponent } from './create-bucketlist/create-bucketlist
     ItemsComponent,
     CreateItemComponent,
     UpdateBucketComponent,
-    CreateBucketlistComponent
+    CreateBucketlistComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import { CreateBucketlistComponent } from './create-bucketlist/create-bucketlist
   ],
   providers: [ LoginService,
             BucketlistService,
-            ItemsService
+            ItemsService,
+            RegisterService,
+            AuthenticateService
   ],
   bootstrap: [AppComponent]
 })
