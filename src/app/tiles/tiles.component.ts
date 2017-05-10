@@ -11,7 +11,9 @@ import { Bucketlist } from '../interfaces/bucketlist.interface';
 })
 export class TilesComponent implements OnInit {
   allBucketlists: Bucketlist[];
+  deleted: any;
   errorMessage: any;
+  response_message: string;
 
   constructor(private _bucketlistService: BucketlistService, private _router: Router) { }
 
@@ -20,7 +22,19 @@ export class TilesComponent implements OnInit {
   }
   getAllBucketlist() {
     this._bucketlistService.getAllBucketlist().subscribe(
-      bucketlists => {this.allBucketlists = bucketlists;
+        bucketlists => {this.allBucketlists = bucketlists;
+      },
+      error => this.errorMessage = <any> error
+    );
+  }
+  deleteBucketlist(bucket_id) {
+    this._bucketlistService.deleteBucket(bucket_id).subscribe(
+      response => {this.deleted = response;
+        if (this.deleted.STATUS === 'Success') {
+          this.response_message = 'Bucketlist deleted';
+        }else {
+          this.response_message = 'Error: bbucketlist not deleted';
+        }
       },
       error => this.errorMessage = <any> error
     );

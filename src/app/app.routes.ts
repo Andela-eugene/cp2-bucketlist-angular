@@ -10,8 +10,9 @@ import { SignupComponent } from './signup/signup.component';
 import { TilesComponent } from './tiles/tiles.component';
 import { ErrorPagesComponent } from './shared/error-pages/error-pages.component';
 import { ItemsComponent } from './items/items.component';
-import { UpdateItemComponent } from './update-item/update-item.component';
+import { CreateItemComponent } from './create-item/create-item.component';
 import { UpdateBucketComponent } from './update-bucket/update-bucket.component';
+import { CreateBucketlistComponent } from './create-bucketlist/create-bucketlist.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -19,8 +20,9 @@ const appRoutes: Routes = [
   {path: 'bucketlist', component: TilesComponent},
   {path: '404', component: ErrorPagesComponent},
   {path: '', component: LandingpageComponent},
+  {path: 'create_bucketlist', component: CreateBucketlistComponent },
   {path: 'bucket_update/:bucket_id', component: UpdateBucketComponent },
-  {path: 'item_update/:bucket_id/:item_id', component: UpdateItemComponent },
+  {path: 'create_item/:bucket_id', component: CreateItemComponent },
   {path: 'bucketlist/:bucketlist_id', component: ItemsComponent },
   {path: '**', redirectTo: '/404'}
 ];

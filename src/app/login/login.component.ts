@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   signIn() {
     this._loginService.login(this.username, this.password).subscribe(
       login_response => {this.loginResponse = login_response;
-          console.log(this.loginResponse.STATUS);
           localStorage.setItem('TOKEN', this.loginResponse.TOKEN);
           if (this.loginResponse.STATUS === 'success') {
             this.router.navigate(['/bucketlist']);

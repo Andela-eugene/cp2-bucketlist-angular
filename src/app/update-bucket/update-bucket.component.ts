@@ -11,8 +11,10 @@ import { BucketlistService } from '../services/bucketlist/bucketlist.service';
 })
 export class UpdateBucketComponent implements OnInit {
   bucket: Bucketlist;
+  updated_bucket: any;
   errorMessage: any;
   bucketlist_id: any;
+  response_message: string;
   name: any;
   sub_rout: any;
 
@@ -32,6 +34,19 @@ export class UpdateBucketComponent implements OnInit {
         this.name = this.bucket.bucketlist_name;
         console.log(this.bucket);
       },
+      error => this.errorMessage = <any> error
+    );
+  }
+  updateBucket(bucket_id) {
+    this._bucketService.updateBucketlist(bucket_id, this.name).subscribe(
+      response => { this.updated_bucket = response;
+          console.log(this.updated_bucket);
+          if (this.updated_bucket.STATUS === 'success') {
+            this.response_message = 'Item ' + this.name + ' created';
+          }else {
+            this.response_message = 'Error creating item';
+          }
+        },
       error => this.errorMessage = <any> error
     );
   }

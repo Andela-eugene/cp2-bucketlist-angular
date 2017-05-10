@@ -33,7 +33,6 @@ export class LoginService {
     });
     return this._http.post(`${this.url}/auth/login/`, this.body, this.header_options)
       .map((response: Response) => <LoginInterface> response.json())
-      .do(data => console.log(data))
       .catch(this.handleError);
   }
   private handleError(error: Response) {

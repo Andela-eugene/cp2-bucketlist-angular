@@ -10,6 +10,7 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class BucketlistService {
+  body: any;
   url = 'http://127.0.0.1:5000';
   bucket_json;
   bucket_arry;
@@ -43,6 +44,33 @@ export class BucketlistService {
       this.bucket_arry = this.bucket_json.bucketlists;
       return <Bucketlist[]> this.bucket_arry;
     })
+      .catch(this.handleError);
+  }
+  updateBucketlist(bucket_id, bucket_name): Observable<any> {
+    let head = this.getHeader();
+    this.body = JSON.stringify({
+      'name': bucket_name
+    });
+    return this._http.put(`${this.url}/api/v1/bucketlists/${bucket_id}`, this.body, { headers: head })
+      .map((response: Response) => response.json())
+      .do(data => console.log(data))
+      .catch(this.handleError);
+  }
+  createBucket(bucket_name): Observable<any> {
+    this.body = JSON.stringify({
+      'name': bucket_name
+    });
+    let head = this.getHeader();
+    return this._http.post(`${this.url}/api/v1/bucketlists/`, this.body, { headers: head })
+      .map((response: Response) => response.json())
+      .do(data => console.log(data))
+      .catch(this.handleError);
+  }
+  deleteBucket(bucket_id): Observable<any> {
+    let head = this.getHeader();
+    return this._http.delete(`${this.url}/api/v1/bucketlists/${bucket_id}`, { headers: head })
+      .map((response: Response) => response.json())
+      .do(data => console.log(data))
       .catch(this.handleError);
   }
   private handleError(error: Response) {

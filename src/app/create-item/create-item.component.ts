@@ -6,16 +6,16 @@ import { ItemsService } from '../services/item/items.service';
 
 @Component({
   selector: 'app-update-item',
-  templateUrl: './update-item.component.html',
-  styleUrls: ['./update-item.component.css']
+  templateUrl: './create-item.component.html',
+  styleUrls: ['./create-item.component.css']
 })
-export class UpdateItemComponent implements OnInit {
-  item: Items;
+export class CreateItemComponent implements OnInit {
+  created_item: any;
   item_name: any;
   item_description: any;
   errorMessage: any;
   bucketlist_id: any;
-  item_id: any;
+  response_message: any;
   sub_rout: any;
 
   constructor(private _itemService: ItemsService, private _route: ActivatedRoute) { }
@@ -23,17 +23,18 @@ export class UpdateItemComponent implements OnInit {
   ngOnInit() {
       this._route.params.subscribe( params => {
           this.bucketlist_id = params['bucket_id'];
-          this.item_id = params['item_id'];
-          this.getItem(this.bucketlist_id, this.item_id);
         }
       );
   }
-
-  getItem(bucketlist_id: any, item_id: any) {
-    this._itemService.getItemByID(bucketlist_id, item_id).subscribe(
-      items => {this.item = items[0];
-          this.item_name = this.item.item_name;
-          this.item_description = this.item.description;
+  createItem(bucketlist_id: any) {
+    this._itemService.createItem(bucketlist_id, this.item_name, this.item_description).subscribe(
+      response => { this.created_item = response;
+          console.log(this.created_item);
+          if (this.created_item.STATUS === 'success') {
+            this.response_message = 'Item ' + this.item_name + ' created';
+          }else {
+            this.response_message = 'Error creating item';
+          }
         },
       error => this.errorMessage = <any> error
     );
