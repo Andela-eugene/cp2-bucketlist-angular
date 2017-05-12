@@ -75,8 +75,8 @@ export class BucketlistService {
   }
   searchBucketlist(search_value): Observable<any> {
     let head = this.getHeader();
-    return this._http.delete(`${this.url}/api/v1/search/${search_value}`, { headers: head })
-      .map((response: Response) => response.json())
+    return this._http.get(`${this.url}/api/v1/search/${search_value}`, { headers: head })
+      .map((response: Response) => response.json().SEARCH)
       .do(data => console.log(data))
       .catch(this.handleError);
   }

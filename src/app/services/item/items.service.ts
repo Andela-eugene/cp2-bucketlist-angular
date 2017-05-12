@@ -33,6 +33,14 @@ export class ItemsService {
     })
       .catch(this.handleError);
   }
+  getPagedItems(bucket_id, page_number): Observable<any> {
+     let head = this.getHeaders();
+    return this._http.get(`${this.url}/api/v1/bucketlists/items/${bucket_id}?limit=${page_number}`, { headers: head })
+      .map((response: Response) => {
+      this.items_json = response.json();
+    })
+      .catch(this.handleError);
+  }
   createItem(bucket_id, item_name, item_description): Observable<any> {
     this.body = JSON.stringify({
       'name': item_name,

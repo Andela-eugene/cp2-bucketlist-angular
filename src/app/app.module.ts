@@ -21,6 +21,8 @@ import { CreateBucketlistComponent } from './create-bucketlist/create-bucketlist
 import { RegisterService } from './services/register/register.service';
 import { SearchComponent } from './search/search.component';
 import { AuthenticateService } from './services/authenticate/authenticate.service';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarService } from './services/navbar/navbar.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { AuthenticateService } from './services/authenticate/authenticate.servic
     CreateItemComponent,
     UpdateBucketComponent,
     CreateBucketlistComponent,
-    SearchComponent
+    SearchComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { AuthenticateService } from './services/authenticate/authenticate.servic
             BucketlistService,
             ItemsService,
             RegisterService,
-            AuthenticateService
+            AuthenticateService,
+            NavbarService
   ],
   bootstrap: [AppComponent]
 })

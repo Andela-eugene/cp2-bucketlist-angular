@@ -17,11 +17,4 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
   }
-  searchBucketlist() {
-    this._bucketlistService.searchBucketlist(this.searchTerm).subscribe(
-        bucketlists => {this.allSearchBucketlists = bucketlists;
-      },
-      error => this.errorMessage = <any> error
-    );
-  }
 }

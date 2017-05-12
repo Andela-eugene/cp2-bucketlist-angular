@@ -20,7 +20,6 @@ export class AuthenticateService implements CanActivate {
   getHeader(): Headers {
     let head = new Headers();
     head.append('Access-Control-Allow-Origin', '*');
-    head.append('TOKEN', localStorage.getItem('TOKEN') );
     head.append('Content-Type', 'application/json');
     head.append('Access-Control-Allow-Methods', 'POST, GET, PUT');
     return head;
@@ -30,6 +29,7 @@ export class AuthenticateService implements CanActivate {
       response => {
         this.auth_check = response;
         this.status = this.auth_check.STATUS;
+        console.log('Authentication service ' + this.status )
         if (this.status === 'success') {
           localStorage.setItem('STATUS', 'true');
         } else {

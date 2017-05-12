@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   password: string;
   loginResponse: any;
   errorMessage: string;
+  displayName: string;
 
   constructor(private _loginService: LoginService, private router: Router) { }
 
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
       login_response => {this.loginResponse = login_response;
           localStorage.setItem('TOKEN', this.loginResponse.TOKEN);
           if (this.loginResponse.STATUS === 'success') {
+            localStorage.setItem('user', this.username);
             this.router.navigate(['/bucketlist']);
           }
         },

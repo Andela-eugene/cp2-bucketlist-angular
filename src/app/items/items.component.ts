@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Items } from '../interfaces/item.interface';
 import { ItemsService } from '../services/item/items.service';
+import {isNumber} from "util";
 
 @Component({
   selector: 'app-items',
@@ -11,10 +12,13 @@ import { ItemsService } from '../services/item/items.service';
 })
 export class ItemsComponent implements OnInit, OnDestroy {
   allItems: Items[];
+  pageItems: Items[];
   errorMessage: any;
   bucketlist_id: number;
   resonse_json: any;
   sub_rout: any;
+  page_number: any;
+  no_pages: number;
 
   constructor(private _itemService: ItemsService,
               private _activeRoute: ActivatedRoute,
@@ -52,6 +56,16 @@ export class ItemsComponent implements OnInit, OnDestroy {
         this.resonse_json = response;
       },
       error => this.errorMessage = <any> error
+    );
+  }
+  getPage(bucket_id) {
+    this._itemService.getPagedItems(bucket_id, this.page_number).subscribe(
+      response => {
+        let bucket_array = response;
+        this.pageItems = bucket_array.bucketlist_item;
+        this.no_pages = bucket_array.pages;
+
+      }
     );
   }
 }
