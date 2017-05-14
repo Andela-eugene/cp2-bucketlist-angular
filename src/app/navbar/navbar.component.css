@@ -803,10 +803,96 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
    height: 105px;
 }
 
+.search-head {
+  height: 70px;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.dropdown-search-btn,
+.search-dropdown-toggle {
+  color: #ffffff;
+  background-color: #772953;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+.dropdown-search-btn:active,
+.search-dropdown-toggle:active {
+  color: #ffffff;
+  background-color: #4b212f;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+.search-btn-view-details {
+  width: 83%;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  background-color: #e95420;
+}
+
+.search-btn-view-details:active {
+  background-color: #782f11;
+}
+
+.open>.search-dropdown-toggle {
+    background-color: #4b212f;
+}
+
 .modal-title {
   color: #d9edf7;
 }
 .close {
   color: #ffffff;
 }
+
+.shape{
+	border-style: solid; border-width:0 100px 60px 0; float:right; height: 0px; width: 0px;
+	-ms-transform:rotate(360deg); /* IE 9 */
+	-o-transform: rotate(360deg);  /* Opera 10.5 */
+	-webkit-transform:rotate(360deg); /* Safari and Chrome */
+	transform:rotate(360deg);
+}
+
+.shape-text{
+    color:#fff; font-size:12px; font-weight:bold; position:relative; right:-40px; top:2px; white-space: nowrap;
+	-ms-transform:rotate(30deg); /* IE 9 */
+	-o-transform: rotate(360deg);  /* Opera 10.5 */
+	-webkit-transform:rotate(30deg); /* Safari and Chrome */
+	transform:rotate(30deg);
+}
+
+.project {
+    min-height: 265px;
+    height:auto;
+}
+
+.project{
+    background:#fff; border:1px solid #ddd; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); margin: 15px 0; overflow:hidden;
+}
+
+.project-radius{
+    border-radius:7px;
+}
+
+.project-success {	border-color: #e95420; }
+.project-success .shape{
+	border-color: transparent #e95420 transparent transparent;
+	border-color: rgba(255,255,255,0) #e95420 rgba(255,255,255,0) rgba(255,255,255,0);
+}
+
+.project-content {
+    padding:0 20px 10px;
+}
+
+.search-modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+.search-modal-content {
+  width: 1000px;
+  left: -200px;
+}
+
 

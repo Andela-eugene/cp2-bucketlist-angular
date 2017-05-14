@@ -5,11 +5,11 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-right" role="search" (submit)="searchBucketlist()">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="searchTerm" [(ngModel)]="searchTerm" required="">
         </div>
-        <a href="#" class="dropdown-toggle btn btn-primary search-btn" data-toggle="modal"><i class="fa fa-search" ></i></a>
+        <a (click)="searchBucketlist()" class="dropdown-toggle btn btn-primary search-btn" data-toggle="modal" data-target="#search-modal"><i class="fa fa-search" ></i></a>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -26,48 +26,36 @@
 </nav>
 
 <!-- Modal -->
-<div class="modal fade" role="dialog">
+<div class="modal fade" role="dialog" id="search-modal">
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <div class="modal-content search-modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Search Results</h4>
       </div>
-      <div class="modal-body">
-        <div *ngIf="allSearchBucketlists">
-          <div class="col-md-4 col-sm-6" *ngFor="let bucket of allSearchBucketlists">
-            <div class="card-container manual-flip">
-              <div class="card">
-                <div class="front">
-                  <div class="cover">
-                    <img src="https://www.clipartsgram.com/image/129556292-kyz84k3.jpg"/>
-                  </div>
-                  <div class="content">
-                    <div class="main text-center">
-                      <h3 class="name">{{bucket.bucketlist_name}}</h3>
-                      <p class="profession">{{bucket.date}}</p>
-                      <p class="text-center">
-                        The bucket list contains {{bucket.bucketlist_items.length}} activities
-                      </p>
-                      <div class="btn-group">
-                        <a class="btn btn-info">More Actions</a>
-                        <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a (click)="redirectToBucket(bucket.bucketlist_id)">Update Bucketlist</a></li>
-                          <li><a routerLink="/create_item/{{bucket.bucketlist_id}}">Create Item</a></li>
-                          <li class="divider"></li>
-                          <li><a (click)="deleteBucketlist(bucket.bucketlist_id)">Delete Bucketlist</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="footer">
-                      <button class="btn btn-primary" (click)="redirectToItems(bucket.bucketlist_id)" >
-                        <i class="fa fa-mail-forward"></i> Click to view activities
-                      </button>
-                    </div>
-                  </div>
+      <div class="modal-body search-modal-body">
+        <div class="col-xs-12" *ngIf="allSearchBucketlists">
+          <div class="col-xs-3" *ngFor="let bucket of allSearchBucketlists">
+            <div class="project project-success project-radius">
+              <div class="shape">
+                <div class="shape-text">
+                  bucketlist
+                </div>
+              </div>
+              <div class="project-content">
+                <h3 class="lead search-head">
+                  {{bucket.bucketlist_name}}
+                </h3>
+                <a class="btn btn-info dropdown-search-btn search-btn-view-details" data-dismiss="modal" (click)="redirectToItems(bucket.bucketlist_id)">View items</a>
+                <div class="btn-group">
+                  <a class="btn btn-info dropdown-search-btn">More Actions</a>
+                  <a class="btn btn-info dropdown-toggle search-dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a (click)="redirectToBucket(bucket.bucketlist_id)" data-dismiss="modal" >Update Bucketlist</a></li>
+                    <li><a routerLink="/create_item/{{bucket.bucketlist_id}}" data-dismiss="modal" >Create Item</a></li>
+                  </ul>
                 </div>
               </div>
             </div>
