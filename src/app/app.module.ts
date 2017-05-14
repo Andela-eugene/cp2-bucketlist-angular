@@ -23,6 +23,7 @@ import { SearchComponent } from './search/search.component';
 import { AuthenticateService } from './services/authenticate/authenticate.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarService } from './services/navbar/navbar.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NavbarService } from './services/navbar/navbar.service';
     UpdateBucketComponent,
     CreateBucketlistComponent,
     SearchComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,25 @@
+footer{
+    background-color: #424558;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    color: #CCC;
+    text-align: center;
+}
+
+footer p {
+    padding: 10.5px;
+    margin: 0px;
+    line-height: 100%;
+}
+
+.anchor-text {
+  color:#e95420;
+  text-decoration:none;
+}
+
+.design {
+  float: right;
+}
