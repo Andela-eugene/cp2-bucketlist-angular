@@ -31,9 +31,15 @@ export class CreateItemComponent implements OnInit {
       response => { this.created_item = response;
           console.log(this.created_item);
           if (this.created_item.STATUS === 'success') {
+            this.ngOnInit();
             this.response_message = 'Item ' + this.item_name + ' created';
+            this.item_name = '';
+            this.item_description = '';
           }else {
+            this.ngOnInit();
             this.response_message = 'Error creating item';
+            this.item_name = '';
+            this.item_description = '';
           }
         },
       error => this.errorMessage = <any> error

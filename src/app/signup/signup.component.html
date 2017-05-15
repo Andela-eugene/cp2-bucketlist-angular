@@ -21,7 +21,11 @@
 </nav>
 
 <div class="container">
-
+  <div class="row" *ngIf="response_message">
+    <div class="alert alert-info">
+      {{response_message}}
+    </div>
+  </div>
   <form class="form-signin" (submit)="register()">
     <h1 class="form-signin-heading text-muted sign-in-text"><i class='fa fa-user-circle'></i> Sign up</h1>
     <input type="text" class="form-control" placeholder="First Name" required="" autofocus="" name="first_name" [(ngModel)]="first_name">

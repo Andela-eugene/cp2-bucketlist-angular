@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit {
   registerResponse: any;
   errorMessage: any;
   confirm: string;
+  response_message: string;
 
   constructor(private _registerService: RegisterService, private _router: Router) { }
 
@@ -25,15 +26,18 @@ export class SignupComponent implements OnInit {
 
   register() {
     if (this.confirm !== this.password) {
-      return this.errorMessage = 'Password mismatch';
+      this.response_message = 'Password mismatch';
+    }else {
+      this._registerService.register(this.first_name, this.last_name, this.email, this.username, this.password).subscribe(
+        register_response => {this.registerResponse = register_response;
+            if (this.registerResponse.STATUS === 'success') {
+              this.response_message = 'Registration successful, navigate to login page to get started';
+            }else {
+              this.response_message = 'Error: Please check your login details and try again';
+            }
+          },
+        error => this.errorMessage = <any> error
+      );
     }
-    this._registerService.register(this.first_name, this.last_name, this.email, this.username, this.password).subscribe(
-      register_response => {this.registerResponse = register_response;
-          if (this.registerResponse.STATUS === 'success') {
-            this._router.navigate(['/login']);
-          }
-        },
-      error => this.errorMessage = <any> error
-    );
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Items } from '../interfaces/item.interface';
@@ -9,7 +9,7 @@ import { ItemsService } from '../services/item/items.service';
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css']
 })
-export class ItemsComponent implements OnInit, OnDestroy {
+export class ItemsComponent implements OnInit {
   allItems: Items[];
   pageItems: Items[] = [];
   errorMessage: any;
@@ -19,6 +19,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
   page_number: any;
   no_pages: number[];
   page_response: any;
+  item_response_message: string;
 
   constructor(private _itemService: ItemsService,
               private _activeRoute: ActivatedRoute,
@@ -33,21 +34,18 @@ export class ItemsComponent implements OnInit, OnDestroy {
         }
       );
   }
-
-  getItems(bucketlist_id: any) {
-    this._itemService.getAllItems(bucketlist_id).subscribe(
-      items => {this.allItems = items;
-        },
-      error => this.errorMessage = <any> error
-    );
-  }
-  ngOnDestroy() {
-    this.sub_rout.unsubscribe();
-  }
   updateItem(item_id: any, item_done: any, item_name: any, item_description: any) {
     this._itemService.updateItem(item_id, item_done, item_name, item_description).subscribe(
       response => {
         this.resonse_json = response;
+        console.log(this.resonse_json);
+        if (this.resonse_json.STATUS === 'success') {
+          this.ngOnInit();
+          this.item_response_message = 'Item updated';
+        }else {
+          this.ngOnInit();
+          this.item_response_message = 'Error occured updating the bucketlist';
+        }
       },
       error => this.errorMessage = <any> error
     );
@@ -56,6 +54,8 @@ export class ItemsComponent implements OnInit, OnDestroy {
     this._itemService.deleteItem(item_id).subscribe(
       response => {
         this.resonse_json = response;
+        this.ngOnInit();
+        this.item_response_message = 'Bucketlist deleted';
       },
       error => this.errorMessage = <any> error
     );

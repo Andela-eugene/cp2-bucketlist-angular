@@ -42,9 +42,11 @@ export class UpdateBucketComponent implements OnInit {
       response => { this.updated_bucket = response;
           console.log(this.updated_bucket);
           if (this.updated_bucket.STATUS === 'success') {
-            this.response_message = 'Item ' + this.name + ' created';
+            this.response_message = 'bucketlist ' + this.name + ' updated';
+            this.name = '';
           }else {
             this.response_message = 'Error creating item';
+            this.name = '';
           }
         },
       error => this.errorMessage = <any> error

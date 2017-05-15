@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" *ngIf=" router.url !== '/login' && router.url !== '/signup' && router.url !== '/' ">
+<nav class="navbar navbar-default" *ngIf=" router.url !== '/login' && router.url !== '/signup' && router.url !== '/' && router.url !== '/logout' ">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" routerLink="/bucketlist">Bucketlist</a>
@@ -17,7 +17,7 @@
           <ul class="dropdown-menu" role="menu">
             <li><a routerLink="/create_bucketlist">Create Bucketlist</a></li>
             <li class="divider"></li>
-            <li><a routerLink="/logout">Logout</a></li>
+            <li><a (click)="logout()" routerLink="/logout">Logout</a></li>
           </ul>
         </li>
       </ul>

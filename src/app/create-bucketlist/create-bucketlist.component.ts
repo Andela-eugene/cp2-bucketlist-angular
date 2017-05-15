@@ -22,9 +22,13 @@ export class CreateBucketlistComponent implements OnInit {
         this.created_bucket = response;
         console.log(this.created_bucket);
          if (this.created_bucket.STATUS === 'success') {
-            this.response_message = 'Item ' + this.bucket_name + ' created';
+            this.ngOnInit();
+            this.response_message = 'Bucketlist ' + this.bucket_name + ' created';
+            this.bucket_name = '';
           }else {
-            this.response_message = 'Error creating item';
+            this.ngOnInit();
+            this.response_message = 'Error creating bucketlist';
+            this.bucket_name = '';
           }
       }
     );

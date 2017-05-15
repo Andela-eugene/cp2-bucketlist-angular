@@ -23,13 +23,6 @@ export class TilesComponent implements OnInit {
   ngOnInit() {
     this.getPaged(1);
   }
-  getAllBucketlist() {
-    this._bucketlistService.getAllBucketlist().subscribe(
-        bucketlists => {this.allBucketlists = bucketlists;
-      },
-      error => this.errorMessage = <any> error
-    );
-  }
   deleteBucketlist(bucket_id) {
     this._bucketlistService.deleteBucket(bucket_id).subscribe(
       response => {this.deleted = response;

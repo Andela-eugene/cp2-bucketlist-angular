@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Compiler } from '@angular/core';
 import {Router} from '@angular/router';
 import {BucketlistService} from '../services/bucketlist/bucketlist.service';
 import {Bucketlist} from '../interfaces/bucketlist.interface';
@@ -14,7 +14,9 @@ export class NavbarComponent implements OnInit {
   errorMessage: any;
   searchTerm: any;
   constructor(public router: Router,
-              private _bucketlistService: BucketlistService, private _router: Router) { }
+              private _bucketlistService: BucketlistService,
+              private _router: Router,
+              private _compiler: Compiler) { }
 
   ngOnInit() {
     this.user = localStorage.getItem('user');
@@ -33,5 +35,10 @@ export class NavbarComponent implements OnInit {
   }
   redirectToBucket(bucket_id) {
     this._router.navigate(['/bucket_update', bucket_id]);
+  }
+  logout() {
+    localStorage.setItem('TOKEN', '');
+    localStorage.setItem('user', '');
+    this._compiler.clearCache();
   }
 }

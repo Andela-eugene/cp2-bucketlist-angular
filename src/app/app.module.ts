@@ -1,3 +1,5 @@
+import { ServerErrorComponent } from './shared/server-error/server-error.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +13,6 @@ import { LoginComponent } from './login/login.component';
 import { routing } from './app.routes';
 import { SignupComponent } from './signup/signup.component';
 import { LoginService } from './services/login/login.service';
-import { ErrorPagesComponent } from './shared/error-pages/error-pages.component';
 import { BucketlistService } from './services/bucketlist/bucketlist.service';
 import { ItemsService } from './services/item/items.service';
 import { ItemsComponent } from './items/items.component';
@@ -24,7 +25,7 @@ import { AuthenticateService } from './services/authenticate/authenticate.servic
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarService } from './services/navbar/navbar.service';
 import { FooterComponent } from './footer/footer.component';
-import { 401Component } from './401/401.component';
+import { UnauthorisedComponent } from './shared/Unauthorised/unauthorised.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,6 @@ import { 401Component } from './401/401.component';
     TilesComponent,
     LoginComponent,
     SignupComponent,
-    ErrorPagesComponent,
     ItemsComponent,
     CreateItemComponent,
     UpdateBucketComponent,
@@ -41,7 +41,7 @@ import { 401Component } from './401/401.component';
     SearchComponent,
     NavbarComponent,
     FooterComponent,
-    401Component
+    UnauthorisedComponent, PageNotFoundComponent, ServerErrorComponent
   ],
   imports: [
     BrowserModule,

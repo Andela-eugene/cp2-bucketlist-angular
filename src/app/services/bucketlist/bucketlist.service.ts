@@ -16,7 +16,7 @@ export class BucketlistService {
   bucket_arry;
   page_response;
 
-  constructor(private _http: Http, private _router: Router) { }
+  constructor(private _http: Http, private _router: Router) {}
   getHeader(): Headers {
     let head = new Headers();
     head.append('Access-Control-Allow-Origin', '*');
@@ -95,9 +95,10 @@ export class BucketlistService {
     const message = `Error status code ${error.status} at ${error.url}`;
     if (error.status === 404) {
       this._router.navigate(['/404']);
-      // this._errorPage.pageNotFound(error.status);
     } else if (error.status === 401) {
       this._router.navigate(['/401']);
+    } else if (error.status === 500) {
+      this._router.navigate(['/500']);
     }
     return Observable.throw(message);
   }

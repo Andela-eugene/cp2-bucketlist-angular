@@ -1,4 +1,9 @@
 <div class="container">
+  <div class="row" *ngIf="response_message">
+    <div class="alert alert-info">
+      {{response_message}}
+    </div>
+  </div>
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
       <div class="col-md-12 col-sm-12">
@@ -6,7 +11,7 @@
           <div class="card">
             <div class="front">
               <div class="cover">
-                  <img src="../../img/coverpage/main_image.jpg"/>
+                  <img src="../../img/coverpage/travel.jpg"/>
               </div><!-- end cover -->
               <div class="content">
                 <div class="main">

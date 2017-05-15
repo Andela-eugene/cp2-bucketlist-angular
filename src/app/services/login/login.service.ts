@@ -40,9 +40,10 @@ export class LoginService {
     const message = `Error status code ${error.status} at ${error.url}`;
     if (error.status === 404) {
       this._router.navigate(['/404']);
-      // this._errorPage.pageNotFound(error.status);
     } else if (error.status === 401) {
       this._router.navigate(['/401']);
+    } else if (error.status === 500) {
+      this._router.navigate(['/500']);
     }
     return Observable.throw(message);
   }
