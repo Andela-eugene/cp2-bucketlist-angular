@@ -28,8 +28,8 @@ export class NavbarComponent implements OnInit {
       error => this.errorMessage = <any> error
     );
   }
-  redirectToItems(bucket_id) {
-    this._router.navigate(['/bucketlist', bucket_id]);
+  redirectToItems(bucket_id, page_no) {
+    this._router.navigate(['/bucketlist', bucket_id, 'page', page_no]);
   }
   redirectToBucket(bucket_id) {
     this._router.navigate(['/bucket_update', bucket_id]);

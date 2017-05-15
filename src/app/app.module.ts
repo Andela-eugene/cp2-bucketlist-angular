@@ -24,6 +24,7 @@ import { AuthenticateService } from './services/authenticate/authenticate.servic
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarService } from './services/navbar/navbar.service';
 import { FooterComponent } from './footer/footer.component';
+import { 401Component } from './401/401.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FooterComponent } from './footer/footer.component';
     CreateBucketlistComponent,
     SearchComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    401Component
   ],
   imports: [
     BrowserModule,
