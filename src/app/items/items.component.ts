@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Items } from '../interfaces/item.interface';
 import { ItemsService } from '../services/item/items.service';
-import {isNumber} from "util";
 
 @Component({
   selector: 'app-items',
@@ -12,13 +11,14 @@ import {isNumber} from "util";
 })
 export class ItemsComponent implements OnInit, OnDestroy {
   allItems: Items[];
-  pageItems: Items[];
+  pageItems: Items[] = [];
   errorMessage: any;
   bucketlist_id: number;
   resonse_json: any;
   sub_rout: any;
   page_number: any;
-  no_pages: number;
+  no_pages: number[];
+  page_response: any;
 
   constructor(private _itemService: ItemsService,
               private _activeRoute: ActivatedRoute,
@@ -27,7 +27,9 @@ export class ItemsComponent implements OnInit, OnDestroy {
   ngOnInit() {
       this.sub_rout = this._activeRoute.params.subscribe( params => {
           this.bucketlist_id = params['bucketlist_id'];
-          this.getItems(this.bucketlist_id);
+          this.page_number = params['page_no'];
+          // this.getItems(this.bucketlist_id);
+          this.getPage(this.bucketlist_id, this.page_number);
         }
       );
   }
@@ -58,13 +60,12 @@ export class ItemsComponent implements OnInit, OnDestroy {
       error => this.errorMessage = <any> error
     );
   }
-  getPage(bucket_id) {
-    this._itemService.getPagedItems(bucket_id, this.page_number).subscribe(
+  getPage(bucket_id, page_no) {
+    this._itemService.getPagedItems(bucket_id, page_no).subscribe(
       response => {
-        let bucket_array = response;
-        this.pageItems = bucket_array.bucketlist_item;
-        this.no_pages = bucket_array.pages;
-
+        this.page_response = response;
+        this.pageItems = this.page_response.bucketlist_item;
+        this.no_pages = this.page_response.pages;
       }
     );
   }

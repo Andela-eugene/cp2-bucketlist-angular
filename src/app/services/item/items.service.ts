@@ -10,6 +10,7 @@ export class ItemsService {
   url = 'http://127.0.0.1:5000';
   items_json;
   items_array;
+  page_response;
 
   getHeaders(): Headers {
     let head = new Headers();
@@ -28,16 +29,17 @@ export class ItemsService {
       .map((response: Response) => {
       this.items_json = response.json();
       this.items_array = this.items_json.bucketlist_item;
-      console.log(this.items_array);
       return <Items[]> this.items_array;
     })
       .catch(this.handleError);
   }
   getPagedItems(bucket_id, page_number): Observable<any> {
      let head = this.getHeaders();
+     let header_options = new RequestOptions({ headers: head });
     return this._http.get(`${this.url}/api/v1/bucketlists/items/${bucket_id}?limit=${page_number}`, { headers: head })
       .map((response: Response) => {
-      this.items_json = response.json();
+      this.page_response = response.json();
+      return this.page_response;
     })
       .catch(this.handleError);
   }

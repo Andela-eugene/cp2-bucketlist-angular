@@ -14,6 +14,7 @@ export class BucketlistService {
   url = 'http://127.0.0.1:5000';
   bucket_json;
   bucket_arry;
+  page_response;
 
   constructor(private _http: Http, private _router: Router) { }
   getHeader(): Headers {
@@ -78,6 +79,15 @@ export class BucketlistService {
     return this._http.get(`${this.url}/api/v1/search/${search_value}`, { headers: head })
       .map((response: Response) => response.json().SEARCH)
       .do(data => console.log(data))
+      .catch(this.handleError);
+  }
+  getPagedBucketlist(page_number): Observable<any> {
+     let head = this.getHeader();
+    return this._http.get(`${this.url}/api/v1/bucketlists/?limit=${page_number}`, { headers: head })
+      .map((response: Response) => {
+      this.page_response = response.json();
+      return this.page_response;
+    })
       .catch(this.handleError);
   }
   private handleError(error: Response) {

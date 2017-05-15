@@ -1,65 +1,59 @@
 <div class="container">
+  <div class="col-md-12 text-center bucketlist-pages">
+    <ul class="pagination">
+      <li *ngFor="let page of no_pages"><a (click)="getPaged(page)">{{page}}</a></li>
+    </ul>
+  </div><!-- end row -->
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
-      <div class="col-md-4 col-sm-6" *ngFor="let bucket of allBucketlists">
-        <div class="card-container manual-flip">
-          <div class="card">
-            <div class="front">
-              <div class="cover">
-                <img src="https://www.clipartsgram.com/image/129556292-kyz84k3.jpg"/>
-              </div>
-              <div class="content">
-                <div class="main text-center">
-                  <h3 class="name">{{bucket.bucketlist_name}}</h3>
-                  <p class="profession">{{bucket.date}}</p>
-                  <p class="text-center">
-                    The bucket list contains {{bucket.bucketlist_items.length}} activities
-                  </p>
-                  <div class="btn-group">
-                    <a class="btn btn-info">More Actions</a>
-                    <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a (click)="redirectToBucket(bucket.bucketlist_id)">Update Bucketlist</a></li>
-                      <li><a routerLink="/create_item/{{bucket.bucketlist_id}}">Create Item</a></li>
-                      <li class="divider"></li>
-                      <li><a (click)="deleteBucketlist(bucket.bucketlist_id)">Delete Bucketlist</a></li>
-                    </ul>
-                  </div>
+      <div *ngIf="pageBucket.length">
+        <div class="col-md-4 col-sm-6" *ngFor="let bucket of pageBucket">
+          <div class="card-container manual-flip">
+            <div class="card">
+              <div class="front">
+                <div class="cover">
+                  <img src="https://www.clipartsgram.com/image/129556292-kyz84k3.jpg"/>
                 </div>
-                <div class="footer">
-                  <button class="btn btn-primary" (click)="redirectToItems(bucket.bucketlist_id)" >
-                    <i class="fa fa-mail-forward"></i> Click to view activities
-                  </button>
+                <div class="content">
+                  <div class="main text-center">
+                    <h3 class="name">{{bucket.bucketlist_name}}</h3>
+                    <p class="profession">{{bucket.date}}</p>
+                    <p class="text-center">
+                      The bucket list contains {{bucket.bucketlist_items.length}} activities
+                    </p>
+                    <div class="btn-group">
+                      <a class="btn btn-info">More Actions</a>
+                      <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a (click)="redirectToBucket(bucket.bucketlist_id)">Update Bucketlist</a></li>
+                        <li><a routerLink="/create_item/{{bucket.bucketlist_id}}">Create Item</a></li>
+                        <li class="divider"></li>
+                        <li><a (click)="deleteBucketlist(bucket.bucketlist_id)">Delete Bucketlist</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="footer">
+                    <button class="btn btn-primary" (click)="redirectToItems(bucket.bucketlist_id, 1)" >
+                      <i class="fa fa-mail-forward"></i> Click to view activities
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!--<div class="col-md-9 col-sm-8" *ngIf="allBucketlists == 0">-->
-        <!--<div class="card-container manual-flip">-->
-          <!--<div class="card">-->
-            <!--<div class="front">-->
-              <!--<div class="cover">-->
-                <!--<img src="../../img/coverpage/sky-diving.jpg"/>-->
-              <!--</div>-->
-              <!--<div class="content">-->
-                <!--<div class="main text-center">-->
-                  <!--<h3 class="name">No bucket list added</h3>-->
-                  <!--<p class="text-center">-->
-                    <!--Add bucketlist to start using the app-->
-                  <!--</p>-->
-                <!--</div>-->
-                <!--<div class="footer">-->
-                  <!--<button class="btn btn-primary" routerLink="/create_bucketlist" >-->
-                    <!--<i class="fa fa-plus"></i> Create bucketlist-->
-                  <!--</button>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
+      <div *ngIf="pageBucket.length < 0">
+        <div class="col-sm-10 col-md-10">
+            <div class="alert-message alert-message-warning">
+                <h4>
+                    No bucketlist found
+                </h4>
+                <p>
+                  navigate to the nav bar and add a new <strong>bucketlist</strong>.</p>
+            </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,55 +1,56 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
-      <div class="col-md-4 col-sm-6" *ngFor="let item of allItems">
-        <div class="card-container manual-flip">
-          <div class="card">
-            <div class="front">
-              <div class="cover">
-                  <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg"/>
-              </div><!-- end cover -->
-              <div class="content">
-                <div class="main text-center">
-                    <h3 class="name">{{item.item_name}}</h3>
-                    <p class="profession">{{item.date_created}}</p>
-                    <p class="text-center">{{item.done ? 'DONE': 'INCOMPLETE'}}</p>
-                    <button class="btn btn-sm btn-success" data-toggle="modal" [attr.data-target]="'#'+item.item_id">update item</button>
-                    <button class="btn btn-sm btn-info text-center" (click)="deletItem(item.item_id)">Delete item</button>
+      <div *ngIf="pageItems.length">
+        <div class="col-md-4 col-sm-6" *ngFor="let item of pageItems">
+          <div class="card-container manual-flip">
+            <div class="card">
+              <div class="front">
+                <div class="cover">
+                    <img src="https://www.clipartsgram.com/image/124089475-california-beaches-tumblr-wallpaper-3.jpg"/>
+                </div><!-- end cover -->
+                <div class="content">
+                  <div class="main text-center">
+                      <h3 class="name">{{item.item_name}}</h3>
+                      <p class="profession">{{item.date_created}}</p>
+                      <p class="text-center">{{item.done ? 'DONE': 'INCOMPLETE'}}</p>
+                      <button class="btn btn-sm btn-success" data-toggle="modal" [attr.data-target]="'#'+item.item_id">update item</button>
+                      <button class="btn btn-sm btn-info text-center" (click)="deletItem(item.item_id)">Delete item</button>
+                  </div>
+                  <div class="footer">
+                      <button class="btn btn-primary" onclick="rotateCard(this)">
+                          <i class="fa fa-mail-forward"></i> View details
+                      </button>
+                  </div>
+                </div><!-- end content -->
+              </div><!-- end front panel -->
+              <div class="back">
+                <div class="header">
+                    <h5 class="motto">BUCKETLIST ITEM</h5>
+                </div>
+                 <div class="content">
+                    <div class="main">
+                        <h4 class="text-center">Description</h4>
+                        <p class="text-center">{{item.description}}</p>
+                    </div>
                 </div>
                 <div class="footer">
-                    <button class="btn btn-primary" onclick="rotateCard(this)">
-                        <i class="fa fa-mail-forward"></i> View details
+                    <button class="btn btn-warning pull-left item-buttons" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
+                        <i class="fa fa-reply"></i> Back
                     </button>
-                </div>
-              </div><!-- end content -->
-            </div><!-- end front panel -->
-            <div class="back">
-              <div class="header">
-                  <h5 class="motto">BUCKETLIST ITEM</h5>
-              </div>
-               <div class="content">
-                  <div class="main">
-                      <h4 class="text-center">Description</h4>
-                      <p class="text-center">{{item.description}}</p>
-                  </div>
-              </div>
-              <div class="footer">
-                  <button class="btn btn-warning pull-left item-buttons" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                      <i class="fa fa-reply"></i> Back
-                  </button>
 
-                  <button *ngIf="item.done == true" class="btn btn-danger pull-right item-buttons" rel="tooltip" title="Flip Card"
-                          (click)="updateItem(item.item_id, 'False', item_name.value, item_description.value)">
-                      <i class="fa fa-close"></i> Undo
-                  </button>
-                  <button *ngIf="item.done == false" class="btn btn-success pull-right item-buttons" rel="tooltip" title="Flip Card"
-                          (click)="updateItem(item.item_id, 'True', item_name.value, item_description.value)">
-                      <i class="fa fa-check"></i> Done
-                  </button>
-              </div><!-- end footer -->
-            </div><!-- end back panel -->
-          </div><!-- end card -->
-        </div><!-- end card-container -->
+                    <button *ngIf="item.done == true" class="btn btn-danger pull-right item-buttons" rel="tooltip" title="Flip Card"
+                            (click)="updateItem(item.item_id, 'False', item_name.value, item_description.value)">
+                        <i class="fa fa-close"></i> Undo
+                    </button>
+                    <button *ngIf="item.done == false" class="btn btn-success pull-right item-buttons" rel="tooltip" title="Flip Card"
+                            (click)="updateItem(item.item_id, 'True', item_name.value, item_description.value)">
+                        <i class="fa fa-check"></i> Done
+                    </button>
+                </div><!-- end footer -->
+              </div><!-- end back panel -->
+            </div><!-- end card -->
+          </div><!-- end card-container -->
 
         <!-- Modal -->
           <div class="modal fade" [attr.id]="item.item_id" role="dialog">
@@ -96,30 +97,24 @@
           </div><!-- end of modal -->
 
         </div><!-- end col sm 3 -->
-        <!--<div class="col-md-9 col-sm-8" *ngIf="allItems.length == 0">-->
-          <!--<div class="card-container manual-flip">-->
-            <!--<div class="card">-->
-              <!--<div class="front">-->
-                <!--<div class="cover">-->
-                  <!--<img src="../../img/coverpage/sky-diving.jpg"/>-->
-                <!--</div>-->
-                <!--<div class="content">-->
-                  <!--<div class="main text-center">-->
-                    <!--<h3 class="name">No item was added</h3>-->
-                    <!--<p class="text-center">-->
-                      <!--Add item to bucketlist to start-->
-                    <!--</p>-->
-                  <!--</div>-->
-                  <!--<div class="footer">-->
-                    <!--<button class="btn btn-primary" routerLink="/bucketlist" >-->
-                      <!--<i class="fa fa-plus"></i> Create item-->
-                    <!--</button>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
+      </div>
+      <div *ngIf="pageItems.length == 0">
+        <div class="col-sm-12 col-md-12">
+            <div class="alert-message alert-message-warning">
+                <h4>
+                    No items found
+                </h4>
+                <p>
+                  Navigate to the bucketlist page and add an item to this
+                    <strong>bucketlist</strong>.</p>
+            </div>
+        </div>
+      </div>
       </div><!-- end col-sm-10 -->
+  </div><!-- end row -->
+  <div class="row text-center">
+    <ul class="pagination">
+      <li *ngFor="let page of no_pages"><a (click)="getPage(bucketlist_id, page)">{{page}}</a></li>
+    </ul>
   </div><!-- end row -->
 </div><!-- end container -->

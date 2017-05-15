@@ -27,6 +27,7 @@ const appRoutes: Routes = [
   {path: 'bucket_update/:bucket_id', component: UpdateBucketComponent },
   {path: 'create_item/:bucket_id', component: CreateItemComponent },
   {path: 'bucketlist/:bucketlist_id', component: ItemsComponent },
+  {path: 'bucketlist/:bucketlist_id/page/:page_no', component: ItemsComponent },
   {path: '**', redirectTo: '/404'}
 ];
 
